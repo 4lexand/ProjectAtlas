@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda</title>
-</head>
-<body>
+  </head>
+  <body>
+    <style>
+      .btn {
+        width: 25%;
+        border: none;
+        padding: 1rem 2rem;
+        background-color: aquamarine;
+        color: black;
+      }
+      .btnPago {
+        display: block;
+        margin: 1rem 5rem;
+        border: none;
+        padding: 1rem 3rem;
+        background-color: red;
+        color: white;
+        width: 50%;
+      }
+    </style>
     <div>
-        <button class="btn" id="btnAgregarCamisa">Agregar Camisa</button>
-        <button class="btn" id="btnAgregarPantalon">Agregar Pantalon</button>
-        <button class="btn" id="btnAgregarZapatos">Agregar Zapatos</button>
-        <button class="btn" id="btnPagar">Realizar pago</button>
+      <button class="btn" id="btnAgregarCamisa">Agregar Camisa</button>
+      <button class="btn" id="btnAgregarPantalon">Agregar Pantalon</button>
+      <button class="btn" id="btnAgregarZapatos">Agregar Zapatos</button>
+      <button class="btnPago" id="btnPagar">Realizar pago</button>
+    </div>
+    <div id="carrito">
+
     </div>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
