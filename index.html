@@ -24,6 +24,21 @@
         color: white;
         width: 50%;
       }
+      .carrito {
+        padding: 1rem 2rem;
+        background-color: #ddd;
+        color: black;
+        width: 25%;
+      }
+      .pago {
+        padding: 1rem 2rem;
+        color: black;
+        width: 25%;
+      }
+      .element {
+        padding: 5px 10px;
+        text-align: center;
+      }
     </style>
     <div>
       <button class="btn" id="btnAgregarCamisa">Agregar Camisa</button>
@@ -31,9 +46,10 @@
       <button class="btn" id="btnAgregarZapatos">Agregar Zapatos</button>
       <button class="btnPago" id="btnPagar">Realizar pago</button>
     </div>
-    <div id="carrito">
-
-    </div>
+    <h5>CARRITO DE COMPRAS</h5>
+    <div id="carrito" class="carrito"></div>
+    <h5>SECCION DE PAGO</h5>
+    <div id="pago" class="pago"></div>
     <script src="./index.js"></script>
   </body>
 </html>

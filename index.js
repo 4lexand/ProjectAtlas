@@ -56,8 +56,10 @@ const tiendaVirtual = (function () {
       this.carritoDeCompras.forEach((element) => {
         total += element.cantidad * element.precio;
       });
+      //reseteando el carrito de compras media vez haya terminado compra
+      this.carritoDeCompras = [];
 
-      resolve({total:total})
+      resolve({ total: total });
     });
   };
   return {
@@ -96,9 +98,12 @@ let ZapatosObj = {
 
 function displayCarrito() {
   carrito.innerHTML = "";
-  tiendaVirtual.carritoDeCompras.forEach((element) => {
-    carrito.innerHTML += "<div>" + element.nombre + element.cantidad + "</div>";
-  });
+  if (tiendaVirtual.carritoDeCompras.length > 0) {
+    tiendaVirtual.carritoDeCompras.forEach((element) => {
+      carrito.innerHTML +=
+        "<div class='element'>" + element.nombre + " - " + element.cantidad + "</div>";
+    });
+  }
 }
 
 btnCamisa.addEventListener("click", () => {
@@ -117,6 +122,7 @@ btnZapatos.addEventListener("click", () => {
 btnPagar.addEventListener("click", () => {
   tiendaVirtual.realizarPago().then((resolve) => {
     console.log(resolve);
+    displayCarrito()
   });
 });
 
