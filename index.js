@@ -18,7 +18,6 @@ const tiendaVirtual = (function () {
   };
 
   let actualizarInventario = function () {
-    console.log("entro");
     for (let i = 0; i < this.carritoDeCompras.length; i++) {
       let productSell = this.carritoDeCompras[i];
       this.inventario[productSell.id].stock =
@@ -27,14 +26,20 @@ const tiendaVirtual = (function () {
   };
   let realizarPago = async function () {
     return new Promise((resolve) => {
-      this.actualizarInventario;
+      this.actualizarInventario();
       resolve("Inventario Actualizado");
     });
   };
-  return { inventario, carritoDeCompras, agregarProductos, realizarPago };
+  return {
+    inventario,
+    carritoDeCompras,
+    agregarProductos,
+    realizarPago,
+    actualizarInventario,
+  };
 })();
 
-console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 1 }));
+console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 2 }));
 console.log(tiendaVirtual.inventario);
 console.log(tiendaVirtual.carritoDeCompras);
 
