@@ -37,7 +37,11 @@ const tiendaVirtual = (function () {
     if (existingProduct.length == 0) {
       this.carritoDeCompras.push(product);
     } else {
-      this.carritoDeCompras[existingProduct[0].id].cantidad++;
+      this.carritoDeCompras.forEach((element) => {
+        if (element.id == existingProduct[0].id) {
+          element.cantidad = element.cantidad + 1;
+        }
+      });
     }
     alert("El producto ha sido agregado al carrito");
   };
@@ -79,6 +83,7 @@ let btnPagar = document.querySelector("#btnPagar");
 let carrito = document.querySelector("#carrito");
 let total = document.querySelector("#total");
 let despedida = document.querySelector("#despedida");
+let productosComprados = document.querySelector("#productosComprados");
 
 let CamisaObj = {
   id: CamisaObject.id,
@@ -117,12 +122,23 @@ function displayCarrito() {
 }
 
 function displayPago(data) {
-  total.innerHTML = "$" +  data.total;
+  total.innerHTML = "$" + data.total;
+  productosComprados.innerHTML = "";
+  data.productos.forEach((element) => {
+    productosComprados.innerHTML +=
+      "<div> Producto: " +
+      element.nombre +
+      " - Cantidad: " +
+      element.cantidad +
+      " - Costo unitario: $" +
+      element.precio;
+    +"</div> ";
+  });
+
   despedida.innerHTML = "Gracias por tu compra!!! :)";
 }
 
 btnCamisa.addEventListener("click", () => {
-  console.log(CamisaObject.id);
   tiendaVirtual.agregarProductos(CamisaObj);
   displayCarrito();
 });
