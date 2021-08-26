@@ -1,15 +1,37 @@
-function Indumentaria(id, stock, nombre, precio) {
+function Indumentaria() {}
+
+function Camisa(id, stock, nombre, precio) {
+  this.id = id;
+  this.stock = stock;
+  this.nombre = nombre;
+  this.precio = precio;
+}
+function Pantalon(id, stock, nombre, precio) {
+  this.id = id;
+  this.stock = stock;
+  this.nombre = nombre;
+  this.precio = precio;
+}
+function Zapatos(id, stock, nombre, precio) {
   this.id = id;
   this.stock = stock;
   this.nombre = nombre;
   this.precio = precio;
 }
 
+Camisa.prototype = new Indumentaria();
+Pantalon.prototype = new Indumentaria();
+Zapatos.prototype = new Indumentaria();
+
+let CamisaObject = new Camisa(0, 2, "Camisa", 10.5)
+let PantalonObject = new Pantalon(1, 2, "Pantalon", 25.0)
+let ZapatosObject = new Zapatos(2, 2, "Zapatos", 15.6);
+
 const tiendaVirtual = (function () {
   let inventario = [
-    new Indumentaria(0, 2, "Camisa", 10.5),
-    new Indumentaria(1, 2, "Pantalon", 25.0),
-    new Indumentaria(2, 2, "Zapatos", 15.6),
+    CamisaObject, PantalonObject,ZapatosObject
+    
+    
   ];
   let carritoDeCompras = [];
   let agregarProductos = function (product) {
@@ -52,28 +74,28 @@ let btnZapatos = document.querySelector("#btnAgregarZapatos");
 let btnPagar = document.querySelector("#btnPagar");
 let carrito = document.querySelector("#carrito");
 
-let Camisa = { id: 0, nombre: "Camisa", cantidad: 1 };
-let Pantalon = { id: 1, nombre: "Pantalon", cantidad: 1 };
-let Zapatos = { id: 2, nombre: "Zapatos", cantidad: 1 };
+let CamisaObj = { id: 0, nombre: "Camisa", cantidad: 1 };
+let PantalonObj = { id: 1, nombre: "Pantalon", cantidad: 1 };
+let ZapatosObj = { id: 2, nombre: "Zapatos", cantidad: 1 };
 
 function displayCarrito() {
   carrito.innerHTML = "";
   tiendaVirtual.carritoDeCompras.forEach((element) => {
-    carrito.innerHTML += "<div>" + element.nombre + element.cantidad + "</div>" ;
+    carrito.innerHTML += "<div>" + element.nombre + element.cantidad + "</div>";
   });
 }
 
 btnCamisa.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos(Camisa);
-  displayCarrito()
+  tiendaVirtual.agregarProductos(CamisaObj);
+  displayCarrito();
 });
 btnPantalon.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos(Pantalon);
-  displayCarrito()
+  tiendaVirtual.agregarProductos(PantalonObj);
+  displayCarrito();
 });
 btnZapatos.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos(Zapatos);
-  displayCarrito()
+  tiendaVirtual.agregarProductos(ZapatosObj);
+  displayCarrito();
 });
 btnPagar.addEventListener("click", () => {
   console.log(tiendaVirtual.carritoDeCompras);
