@@ -56,10 +56,11 @@ const tiendaVirtual = (function () {
       this.carritoDeCompras.forEach((element) => {
         total += element.cantidad * element.precio;
       });
+      let carritoTerminado = this.carritoDeCompras;
       //reseteando el carrito de compras media vez haya terminado compra
       this.carritoDeCompras = [];
 
-      resolve({ total: total });
+      resolve({ total: total, productos: carritoTerminado });
     });
   };
   return {
@@ -70,12 +71,14 @@ const tiendaVirtual = (function () {
     actualizarInventario,
   };
 })();
-
+//elementos del html
 let btnCamisa = document.querySelector("#btnAgregarCamisa");
 let btnPantalon = document.querySelector("#btnAgregarPantalon");
 let btnZapatos = document.querySelector("#btnAgregarZapatos");
 let btnPagar = document.querySelector("#btnPagar");
 let carrito = document.querySelector("#carrito");
+let total = document.querySelector("#total");
+let despedida = document.querySelector("#despedida");
 
 let CamisaObj = {
   id: CamisaObject.id,
@@ -101,9 +104,21 @@ function displayCarrito() {
   if (tiendaVirtual.carritoDeCompras.length > 0) {
     tiendaVirtual.carritoDeCompras.forEach((element) => {
       carrito.innerHTML +=
-        "<div class='element'>" + element.nombre + " - " + element.cantidad + "</div>";
+        "<div class='element'>" +
+        element.nombre +
+        " - " +
+        element.cantidad +
+        " - $" +
+        element.precio +
+        "c/u" +
+        "</div>";
     });
   }
+}
+
+function displayPago(data) {
+  total.innerHTML = "$" +  data.total;
+  despedida.innerHTML = "Gracias por tu compra!!! :)";
 }
 
 btnCamisa.addEventListener("click", () => {
@@ -122,7 +137,8 @@ btnZapatos.addEventListener("click", () => {
 btnPagar.addEventListener("click", () => {
   tiendaVirtual.realizarPago().then((resolve) => {
     console.log(resolve);
-    displayCarrito()
+    displayCarrito();
+    displayPago(resolve);
   });
 });
 

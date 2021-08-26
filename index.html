@@ -12,7 +12,7 @@
         width: 25%;
         border: none;
         padding: 1rem 2rem;
-        background-color: aquamarine;
+        background-color: slategray;
         color: black;
       }
       .btnPago {
@@ -20,8 +20,8 @@
         margin: 1rem 5rem;
         border: none;
         padding: 1rem 3rem;
-        background-color: red;
-        color: white;
+        background-color: salmon;
+        color: black;
         width: 50%;
       }
       .carrito {
@@ -31,13 +31,18 @@
         width: 25%;
       }
       .pago {
+          font-size: 1.5rem;
         padding: 1rem 2rem;
         color: black;
-        width: 25%;
+        width: 90%;
       }
       .element {
         padding: 5px 10px;
         text-align: center;
+      }
+      .despedida{
+          font-size: 2rem !important;
+          letter-spacing: 3px;
       }
     </style>
     <div>
@@ -49,7 +54,11 @@
     <h5>CARRITO DE COMPRAS</h5>
     <div id="carrito" class="carrito"></div>
     <h5>SECCION DE PAGO</h5>
-    <div id="pago" class="pago"></div>
+    <div id="pago" class="pago">
+        <span>TOTAL: <p id="total"></p></span>
+        <span id="productosComprados"></span>
+        <p id="despedida" class="despedida"></p>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>
