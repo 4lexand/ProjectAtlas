@@ -16,14 +16,12 @@ const tiendaVirtual = (function () {
     let existingProduct = this.carritoDeCompras.filter(
       (item) => item.id == product.id
     );
-    console.log(existingProduct.length);
     if (existingProduct.length == 0) {
       this.carritoDeCompras.push(product);
     } else {
-      //this.carritoDeCompras[existingProduct.id].cantidad= this.carritoDeCompras[existingProduct.id].cantidad+1;
+      this.carritoDeCompras[existingProduct[0].id].cantidad++;
     }
-
-    //console.log("El producto ha sido agregado al carrito");
+    alert("El producto ha sido agregado al carrito");
   };
 
   let actualizarInventario = function () {
@@ -47,14 +45,16 @@ const tiendaVirtual = (function () {
     actualizarInventario,
   };
 })();
-/*
+
 let btnCamisa = document.querySelector("#btnAgregarCamisa");
 let btnPantalon = document.querySelector("#btnAgregarPantalon");
 let btnZapatos = document.querySelector("#btnAgregarZapatos");
 let btnPagar = document.querySelector("#btnPagar");
 
 btnCamisa.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos({ id: 0, cantidad: 1 });
+  tiendaVirtual.agregarProductos(tiendaVirtual.inventario.filter((item)=>{
+    item.nombre == "Camisa"
+  }));
 });
 btnPantalon.addEventListener("click", () => {
   tiendaVirtual.agregarProductos({ id: 1, cantidad: 1 });
@@ -65,11 +65,7 @@ btnZapatos.addEventListener("click", () => {
 btnPagar.addEventListener("click", () => {
   console.log(tiendaVirtual.carritoDeCompras);
 });
-*/
 
-console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 1 }));
-console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 1 }));
-console.log(tiendaVirtual.carritoDeCompras);
 /*
 console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 2 }));
 console.log(tiendaVirtual.inventario);
