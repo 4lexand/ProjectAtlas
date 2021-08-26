@@ -51,16 +51,18 @@ let btnPantalon = document.querySelector("#btnAgregarPantalon");
 let btnZapatos = document.querySelector("#btnAgregarZapatos");
 let btnPagar = document.querySelector("#btnPagar");
 
+let Camisa = { id: 0, nombre: "Camisa", cantidad: 1 };
+let Pantalon = { id: 0, nombre: "Pantalon", cantidad: 1 };
+let Zapatos = { id: 0, nombre: "Zapatos", cantidad: 1 };
+
 btnCamisa.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos(tiendaVirtual.inventario.filter((item)=>{
-    item.nombre == "Camisa"
-  }));
+  tiendaVirtual.agregarProductos(Camisa);
 });
 btnPantalon.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos({ id: 1, cantidad: 1 });
+  tiendaVirtual.agregarProductos(Pantalon);
 });
 btnZapatos.addEventListener("click", () => {
-  tiendaVirtual.agregarProductos({ id: 2, cantidad: 1 });
+  tiendaVirtual.agregarProductos(Zapatos);
 });
 btnPagar.addEventListener("click", () => {
   console.log(tiendaVirtual.carritoDeCompras);
