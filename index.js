@@ -5,5 +5,11 @@ const tiendaVirtual = (function () {
     this.carritoDeCompras.push(product);
     console.log("El producto ha sido agregado al carrito");
   };
-  return { inventario, carritoDeCompras };
+  let actualizarInventario = function () {
+    
+  }
+  let realizarPago= function () {
+    
+  }
+  return { inventario, carritoDeCompras, agregarProductos };
 })();
