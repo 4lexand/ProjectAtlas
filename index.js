@@ -18,7 +18,12 @@ const tiendaVirtual = (function () {
   };
 
   let actualizarInventario = function () {
-    return new Promise((resolve, reject) => {});
+    return new Promise((resolve) => {
+      for(let i =0; i<this.carritoDeCompras.length; i++){
+        let productSell = this.carritoDeCompras[i]
+        this.inventario[productSell.id].stock - productSell.
+      }
+    });
   };
   let realizarPago = function () {};
   return { inventario, carritoDeCompras, agregarProductos, realizarPago };
