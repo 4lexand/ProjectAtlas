@@ -23,16 +23,12 @@ Camisa.prototype = new Indumentaria();
 Pantalon.prototype = new Indumentaria();
 Zapatos.prototype = new Indumentaria();
 
-let CamisaObject = new Camisa(0, 2, "Camisa", 10.5)
-let PantalonObject = new Pantalon(1, 2, "Pantalon", 25.0)
+let CamisaObject = new Camisa(0, 2, "Camisa", 10.5);
+let PantalonObject = new Pantalon(1, 2, "Pantalon", 25.0);
 let ZapatosObject = new Zapatos(2, 2, "Zapatos", 15.6);
 
 const tiendaVirtual = (function () {
-  let inventario = [
-    CamisaObject, PantalonObject,ZapatosObject
-    
-    
-  ];
+  let inventario = [CamisaObject, PantalonObject, ZapatosObject];
   let carritoDeCompras = [];
   let agregarProductos = function (product) {
     let existingProduct = this.carritoDeCompras.filter(
@@ -56,7 +52,12 @@ const tiendaVirtual = (function () {
   let realizarPago = async function () {
     return new Promise((resolve) => {
       this.actualizarInventario();
-      resolve("Inventario Actualizado");
+      let total = 0;
+      this.carritoDeCompras.forEach((element) => {
+        total += element.cantidad * element.precio;
+      });
+
+      resolve({total:total})
     });
   };
   return {
@@ -74,9 +75,24 @@ let btnZapatos = document.querySelector("#btnAgregarZapatos");
 let btnPagar = document.querySelector("#btnPagar");
 let carrito = document.querySelector("#carrito");
 
-let CamisaObj = { id: 0, nombre: "Camisa", cantidad: 1 };
-let PantalonObj = { id: 1, nombre: "Pantalon", cantidad: 1 };
-let ZapatosObj = { id: 2, nombre: "Zapatos", cantidad: 1 };
+let CamisaObj = {
+  id: CamisaObject.id,
+  nombre: CamisaObject.nombre,
+  precio: CamisaObject.precio,
+  cantidad: 1,
+};
+let PantalonObj = {
+  id: PantalonObject.id,
+  nombre: PantalonObject.nombre,
+  precio: PantalonObject.precio,
+  cantidad: 1,
+};
+let ZapatosObj = {
+  id: ZapatosObject.id,
+  nombre: ZapatosObject.nombre,
+  precio: ZapatosObject.precio,
+  cantidad: 1,
+};
 
 function displayCarrito() {
   carrito.innerHTML = "";
@@ -86,6 +102,7 @@ function displayCarrito() {
 }
 
 btnCamisa.addEventListener("click", () => {
+  console.log(CamisaObject.id);
   tiendaVirtual.agregarProductos(CamisaObj);
   displayCarrito();
 });
@@ -98,7 +115,9 @@ btnZapatos.addEventListener("click", () => {
   displayCarrito();
 });
 btnPagar.addEventListener("click", () => {
-  console.log(tiendaVirtual.carritoDeCompras);
+  tiendaVirtual.realizarPago().then((resolve) => {
+    console.log(resolve);
+  });
 });
 
 /*
