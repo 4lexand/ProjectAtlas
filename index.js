@@ -17,22 +17,19 @@ const tiendaVirtual = (function () {
     console.log("El producto ha sido agregado al carrito");
   };
 
-  let actualizarInventario = function actualizarInventario() {
-    return new Promise((resolve) => {
-      if (this.carritoDeCompras.length > 0) {
-        for (let i = 0; i < this.carritoDeCompras.length; i++) {
-          let productSell = this.carritoDeCompras[i];
-          this.inventario[productSell.id].stock =
-            this.inventario[productSell.id].stock - productSell.cantidad;
-        }
-      }
-      resolve("Inventario Actualizado");
-    });
+  let actualizarInventario = function () {
+    console.log("entro");
+    for (let i = 0; i < this.carritoDeCompras.length; i++) {
+      let productSell = this.carritoDeCompras[i];
+      this.inventario[productSell.id].stock =
+        this.inventario[productSell.id].stock - productSell.cantidad;
+    }
   };
   let realizarPago = async function () {
-    let actualizarInventarioPago = await this.actualizarInventario;
-    console.log(actualizarInventarioPago);
-    return actualizarInventarioPago;
+    return new Promise((resolve) => {
+      this.actualizarInventario;
+      resolve("Inventario Actualizado");
+    });
   };
   return { inventario, carritoDeCompras, agregarProductos, realizarPago };
 })();
@@ -41,6 +38,7 @@ console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 1 }));
 console.log(tiendaVirtual.inventario);
 console.log(tiendaVirtual.carritoDeCompras);
 
-tiendaVirtual.realizarPago().then((response)=>{
+tiendaVirtual.realizarPago().then((response) => {
   console.log(response);
-})
+  console.log(tiendaVirtual.inventario);
+});
