@@ -39,6 +39,9 @@ const tiendaVirtual = (function () {
   };
 })();
 
+let btnCamisa = document.querySelector("#btnAgregarCamisa");
+console.log(btnCamisa);
+/*
 console.log(tiendaVirtual.agregarProductos({ id: 0, cantidad: 2 }));
 console.log(tiendaVirtual.inventario);
 console.log(tiendaVirtual.carritoDeCompras);
@@ -46,4 +49,4 @@ console.log(tiendaVirtual.carritoDeCompras);
 tiendaVirtual.realizarPago().then((response) => {
   console.log(response);
   console.log(tiendaVirtual.inventario);
-});
+});*/
